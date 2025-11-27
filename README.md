@@ -75,6 +75,32 @@ python manage.py test
 4️⃣ Run the Development Server
 python manage.py runserver
 
+🤖 AI Assistance
+
+This project was developed with the help of AI tools for:
+
+* Django installation
+
+* Model design
+
+* View logic
+
+* Template creation
+
+* Test case generation
+
+Debugging and error fixing
+
+✅ Status
+
+✔ Fully Working
+✔ Tested
+✔ Ready for Submission
+
+📌 Author
+
+Yadwinder Kaur
+
 
 Open in browser:
 
