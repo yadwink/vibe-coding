@@ -1,0 +1,75 @@
+.snake-container {
+  max-width: 500px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.snake-container h1 {
+  margin-bottom: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.info-row button {
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #222;
+  color: #fff;
+}
+
+.info-row button:hover {
+  opacity: 0.9;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.status-gameover {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.board {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  border: 2px solid #333;
+  background: #fafafa;
+}
+
+.cell {
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.cell-snake {
+  background: #4caf50;
+}
+
+.cell-head {
+  background: #2e7d32;
+}
+
+.cell-food {
+  background: #e53935;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #777;
+}

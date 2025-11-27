@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Home - TODO App{% endblock %}
+
+{% block content %}
+  <h2>{% if form.instance.pk %}Edit TODO{% else %}Create TODO{% endif %}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <label for="{{ form.title.id_for_label }}">Title:</label><br>
+      {{ form.title.errors }}
+      {{ form.title }}
+    </div>
+
+    <div>
+      <label for="{{ form.description.id_for_label }}">Description:</label><br>
+      {{ form.description.errors }}
+      {{ form.description }}
+    </div>
+
+    <div>
+      <label for="{{ form.due_date.id_for_label }}">Due date:</label><br>
+      {{ form.due_date.errors }}
+      {{ form.due_date }}
+    </div>
+
+    <div>
+      <label for="{{ form.is_resolved.id_for_label }}">Resolved:</label>
+      {{ form.is_resolved }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {% if form.instance.pk %}Save changes{% else %}Add TODO{% endif %}
+    </button>
+
+    {% if form.instance.pk %}
+      <a href="{% url 'todo_list' %}" class="btn btn-secondary">Cancel edit</a>
+    {% endif %}
+  </form>
+
+  <hr>
+
+  <h2>TODOs</h2>
+
+  {% if todos %}
+    <ul>
+      {% for todo in todos %}
+        <li>
+          <span class="{% if todo.is_resolved %}todo-resolved{% endif %}">
+            {{ todo.title }}{% if todo.due_date %} (due: {{ todo.due_date }}){% endif %}
+          </span>
+
+          <!-- Toggle resolved -->
+          <form method="post" action="{% url 'todo_toggle_resolved' todo.pk %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary">
+              {% if todo.is_resolved %}Mark as unresolved{% else %}Mark as done{% endif %}
+            </button>
+          </form>
+
+          <!-- Edit -->
+          <a href="{% url 'todo_edit' todo.pk %}" class="btn btn-primary">Edit</a>
+
+          <!-- Delete -->
+          <form method="post" action="{% url 'todo_delete' todo.pk %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No TODOs yet. Add one above!</p>
+  {% endif %}
+{% endblock %}
